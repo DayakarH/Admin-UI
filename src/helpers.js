@@ -12,8 +12,7 @@ const addAdditionalPropsToUsers = (users) => {
 };
 
 
-export const fetchUsers = async (loadingState, applyData, applyError) => {
-    loadingState(true);
+export const fetchUsers = async (applyData, applyError) => {
     try {
         const res = await axios.get(END_POINT);
         const usersWithAddedProps = addAdditionalPropsToUsers(res.data);
@@ -21,7 +20,6 @@ export const fetchUsers = async (loadingState, applyData, applyError) => {
     } catch {
         applyError(true);
     }
-    loadingState(false);
 }
 
 export const searchUsers = (users, searchInput) => {

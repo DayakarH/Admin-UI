@@ -34,8 +34,8 @@ const StyledUsersData = styled.section`
 `;
 
 const UsersList = forwardRef(({ users, selectAllUsersInCurrentPage, selectSingleUser, editUser, deleteUser }, ref) => {
-    const handleHeaderCheckBox = (event) => {
-        selectAllUsersInCurrentPage(event, users);
+    const handleHeaderCheckBox = (evt) => {
+        selectAllUsersInCurrentPage(evt, users);
     };
 
     return (

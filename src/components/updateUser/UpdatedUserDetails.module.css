@@ -7,13 +7,25 @@
 }
 
 .header {
+	display: flex;
+	justify-content: space-between;
+	margin-block-end: 1rem;
+}
+
+.header > h3 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: var(--20px);
 	font-weight: 600;
 	text-align: center;
-	margin-block-end: 1rem;
+	margin-inline: auto;
 }
 
+.header > button {
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
 .form {
 	display: flex;
 	flex-direction: column;
@@ -29,4 +41,25 @@
 .formGroup > label {
 	font-size: var(--18px);
 	font-weight: 500;
+}
+
+.buttonGroup {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.buttonGroup > button {
+	padding: 0.3em 0.6em;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.buttonGroup button:first-of-type {
+	background-color: hsl(210 14% 83%);
+	color: black;
+}
+.buttonGroup button:last-of-type {
+	background-color: black;
+	color: white;
 }

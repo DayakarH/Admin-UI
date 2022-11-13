@@ -23,16 +23,24 @@ const StyledDashboard = styled.div`
     & > .tools{
         display: flex;
         justify-content: space-between;
+
+        & > button{
+            background-color:crimson;
+            color: white;
+            padding:.3em .6em;
+            border:none;
+            outline:none;
+            cursor: pointer;
+        }
     }
 
 `
 
 const Dashboard = () => {
     const [allUsers, setAllUsers] = useState([]);
+    const [error, setError] = useState(null);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchInput, setSearchInput] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(10);
     const [usersToBeEdited, setUserToBeEdited] = useState({});
@@ -52,14 +60,13 @@ const Dashboard = () => {
         selectAll.current.checked = false;
     };
 
-    const selectAllUsersInCurrentPage = (event, displayedUsers, usersGettingUpdated = filteredUsers) => {
-        displayedUsers.forEach((user) => {
+    const selectAllUsersInCurrentPage = (evt, currentUsers, usersGettingUpdated = allUsers) => {
+        currentUsers.forEach((user) => {
             const { id } = user;
             const idx = usersGettingUpdated.findIndex((user) => user.id === id);
-            usersGettingUpdated[idx].isChecked = event.target.checked;
+            usersGettingUpdated[idx].isChecked = evt.target.checked;
         });
-        console.log(displayedUsers, usersGettingUpdated);
-        setFilteredUsers(usersGettingUpdated);
+        setFilteredUsers(currentUsers);
     };
 
     const userEditor = user => {
@@ -72,14 +79,12 @@ const Dashboard = () => {
         const index = displayedUsers.findIndex((user) => user.id === savedUser.id);
         displayedUsers[index] = { ...savedUser };
         setFilteredUsers(displayedUsers);
-        setAllUsers(displayedUsers);
     };
 
 
     const deleteUser = (id, users = filteredUsers) => {
         const activeFilteredUsersList = users.filter(user => user.id !== id);
         const activeUsersList = allUsers.filter((user) => user.id !== id);
-        console.log(activeUsersList);
         setSearchInput(null);
         setAllUsers(activeUsersList);
         setFilteredUsers(activeFilteredUsersList);
@@ -96,10 +101,12 @@ const Dashboard = () => {
 
         setFilteredUsers(activeFilteredUsersList);
         setAllUsers(activeUsersList);
+        selectAll.current.checked = false;
+
     }
 
     useEffect(() => {
-        fetchUsers(setIsLoading, setAllUsers, setError)
+        fetchUsers(setAllUsers, setError)
     }, []);
 
     useEffect(() => {
@@ -108,8 +115,7 @@ const Dashboard = () => {
         } else {
             const searchedUsers = searchUsers(allUsers, searchInput)
             setFilteredUsers(searchedUsers);
-            setCurrentPage(1);
-
+            paginate(1);
         }
     }, [allUsers, searchInput]);
 
@@ -133,7 +139,7 @@ const Dashboard = () => {
             <UpdateUserDetails user={usersToBeEdited} updateUser={updateUserDetails} ref={userEditorRef} />
             <div className="tools">
                 <button onClick={handleDeletingSelectedUsers}>Delete Selected</button>
-                <Pagination totalUsers={filteredUsers.length} paginate={paginate} />
+                <Pagination totalUsers={filteredUsers.length} paginate={paginate} currentPageNum={currentPage} />
             </div>
         </StyledDashboard>
     )

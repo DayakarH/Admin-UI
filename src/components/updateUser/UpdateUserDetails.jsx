@@ -1,4 +1,5 @@
 import React, { useState, useEffect, forwardRef } from 'react';
+import close from '@assets/close.svg';
 import styles from './UpdatedUserDetails.module.css';
 
 // const StyledDialog = styled.dialog`
@@ -52,6 +53,9 @@ const UpdateUserDetails = forwardRef(({ user, updateUser }, ref) => {
         setUserDetails({ ...userDetails, [fieldName]: fieldValue });
     };
 
+    const handleDialogClose = () => {
+        ref.current.close();
+    }
     const handleFormSubmission = () => {
         const updatedUserObj = {
             ...user,
@@ -75,7 +79,10 @@ const UpdateUserDetails = forwardRef(({ user, updateUser }, ref) => {
 
     return (
         <dialog ref={ref} className={styles.dialog}>
-            <header className={styles.header}> Edit User Details</header>
+            <header className={styles.header}>
+                <h3> Edit User Details</h3>
+                <button onClick={handleDialogClose}><img src={close} alt='close' className={styles.closeSVG} /></button>
+            </header>
             <form method='dialog' onSubmit={handleFormSubmission} className={styles.form}>
                 <div className={styles.formGroup}>
                     <label htmlFor="name">Name:</label>
@@ -99,7 +106,11 @@ const UpdateUserDetails = forwardRef(({ user, updateUser }, ref) => {
                         <option value="member">Member</option>
                     </select>
                 </div>
-                <button type='submit'>Save Changes</button>
+
+                <div className={styles.buttonGroup}>
+                    <button onClick={handleDialogClose}>Cancel</button>
+                    <button type='submit'>Save Changes</button>
+                </div>
             </form>
         </dialog>
     )
