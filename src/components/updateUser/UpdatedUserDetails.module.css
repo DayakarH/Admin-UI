@@ -1,0 +1,32 @@
+.dialog {
+	width: 60%;
+	position: fixed;
+	top: 10%;
+	left: 20%;
+	padding: 2em 3em;
+}
+
+.header {
+	font-family: 'Montserrat', sans-serif;
+	font-size: var(--20px);
+	font-weight: 600;
+	text-align: center;
+	margin-block-end: 1rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+}
+
+.formGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+
+.formGroup > label {
+	font-size: var(--18px);
+	font-weight: 500;
+}

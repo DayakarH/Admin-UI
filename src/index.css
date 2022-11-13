@@ -1,0 +1,100 @@
+* {
+	margin: 0;
+	padding: 0;
+	line-height: calc(1em + 0.8rem);
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html {
+	--14px: 0.875rem;
+	--15px: 0.9375rem;
+	--16px: 1rem;
+	--17px: 1.0625rem;
+	--18px: 1.125rem;
+	--19px: 1.1875rem;
+	--20px: 1.25rem;
+	--21px: 1.3125rem;
+}
+html,
+body,
+#root {
+	height: 100%;
+}
+body {
+	-webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+#root,
+#__next {
+	isolation: isolate;
+}
+
+:root {
+	--color-site-primary: hsl(210 16% 93%);
+	--color-table-background: hsl(210 16% 93%);
+	--color-table-border: hsl(208 7% 46%);
+	--color-table-header: hsl(210 11% 71%);
+	--color-row-selected: hsl(210 14% 83%);
+	--color-button-primary: hsl(210 11% 15%);
+	--color-button-secondary: hsl(210 17% 95%);
+	--color-dialog-background: hsl(0 0% 96%);
+	--shadow-color: 0deg 0% 54%;
+	--shadow-elevation-low: 0.5px 0.5px 0.7px hsl(var(--shadow-color) / 0.58),
+		0.8px 0.8px 1.1px -1.7px hsl(var(--shadow-color) / 0.47),
+		2.1px 2.1px 2.9px -3.5px hsl(var(--shadow-color) / 0.36);
+	--shadow-elevation-medium: 0.5px 0.5px 0.7px hsl(var(--shadow-color) / 0.61),
+		1.4px 1.3px 1.9px -1.2px hsl(var(--shadow-color) / 0.52),
+		4px 3.9px 5.4px -2.3px hsl(var(--shadow-color) / 0.44),
+		10.7px 10.5px 14.6px -3.5px hsl(var(--shadow-color) / 0.35);
+	--shadow-elevation-high: 0.5px 0.5px 0.7px hsl(var(--shadow-color) / 0.57),
+		2.3px 2.2px 3.1px -0.5px hsl(var(--shadow-color) / 0.53),
+		4.5px 4.4px 6.1px -1px hsl(var(--shadow-color) / 0.49),
+		8.2px 8px 11.2px -1.5px hsl(var(--shadow-color) / 0.44),
+		14.5px 14.1px 19.7px -2px hsl(var(--shadow-color) / 0.4),
+		24.3px 23.7px 33.1px -2.5px hsl(var(--shadow-color) / 0.36),
+		38.6px 37.6px 52.5px -3px hsl(var(--shadow-color) / 0.32),
+		58.5px 57px 79.6px -3.5px hsl(var(--shadow-color) / 0.28);
+}
+
+body {
+	font-family: 'Cairo', sans-serif;
+	background-color: var(--color-site-primary);
+}
+.container {
+	width: 86%;
+	max-width: 1200px;
+	margin-inline: auto;
+}
+
+@media screen and (max-width: 600px) {
+	.container {
+		width: 96%;
+	}
+}
